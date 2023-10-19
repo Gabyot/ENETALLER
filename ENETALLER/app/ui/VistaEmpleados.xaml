@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ENETALLER.app.ui.VistaEmpleados"
+             Title="VistaEmpleados">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Text="Tabla de Empleados"
+               FontSize="Title"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Grid.Row="0" />
+        <TableView x:Name="employeeTable" Grid.Row="1">
+            <TableRoot>
+                <TableSection Title="Empleados">
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Nombre" FontAttributes="Bold" Grid.Column="0" />
+                            <Label Text="RUT" FontAttributes="Bold" Grid.Column="1" />
+                            <Label Text="Teléfono" FontAttributes="Bold" Grid.Column="2" />
+                            <Label Text="Sueldo Bruto" FontAttributes="Bold" Grid.Column="3" />
+                            <Label Text="Sueldo Líquido" FontAttributes="Bold" Grid.Column="4" />
+                            <Label Text="AFP" FontAttributes="Bold" Grid.Column="5" />
+                            <Label Text="Salud" FontAttributes="Bold" Grid.Column="6" />
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </Grid>
+</ContentPage>

@@ -91,6 +91,14 @@ public partial class CalculadoraSueldo : ContentPage
 
     private void OnListarClicked(object sender, EventArgs e)
     {
-        Console.WriteLine("Hello, World!");
+        try
+        {
+            Console.WriteLine("Hiciste CLick");
+            Navigation.PushAsync(new VistaEmpleados());
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al navegar a VistaEmpleados: " + ex.ToString());
+        }
     }
 }
