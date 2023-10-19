@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ENETALLER.app.ui.FormularioAdmin"
+             Title="FormularioAdmin">
+    <VerticalStackLayout>
+
+        <Label 
+            Text="Ingresa los datos del Empleado"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"
+            FontSize="Title" Margin="0,20,0,0" >
+			
+        </Label>
+
+        <StackLayout Padding="20">
+            <Entry Placeholder="Nombre"
+                   x:Name="NameEntry" Margin="0,0,0,15" />
+            <Entry Placeholder="Correo"
+                   x:Name="EmailEntry" Margin="0,0,0,15" />
+            <Entry Placeholder="Contraseña"
+                   x:Name="PasswordEntry" Margin="0,0,0,15" />
+            <Entry Placeholder="Dirección"
+                   x:Name="AddressEntry" Margin="0,0,0,15" />
+            <Entry Placeholder="Teléfono"
+                   x:Name="PhoneEntry" Margin="0,0,0,15"/>
+            <Entry Placeholder="RUT"
+                   x:Name="RutEntry" Margin="0,0,0,15"/>
+            <Entry Placeholder="Valor por Hora"
+                   x:Name="HourValueEntry"
+                   Margin="0,0,0,15" />
+            <Entry Placeholder="Valor por Hora Extra"
+                   x:Name="ExtraValueEntry"
+                   Margin="0,0,0,15" />            
+            <Button Text="Crear Empleado"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnCrearEmpleadoClicked"
+                    Margin="0,0,0,15"/>
+
+            <Label Text="Seleccionar Empleado" />
+            <Picker x:Name="EmployeePicker" Margin="0,0,0,15">
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+
+
+            <Button Text="Seleccionar Empleado"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnSeleccionarEmpleadoClicked"/> 
+
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

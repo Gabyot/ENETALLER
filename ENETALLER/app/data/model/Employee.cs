@@ -8,7 +8,6 @@ namespace ENETALLER.app.data.model
         public int ExtraValue { get; set; }
         public double GrossSalary { get; set; }
         public int NetSalary { get; set; }
-
         public virtual AFP AFP { get; set; }
         public virtual Health Health { get; set; }
 
@@ -16,6 +15,7 @@ namespace ENETALLER.app.data.model
         string address, string phone, string rut, AFP aFP, Health health, int hourValue,
         int extraValue, int grossSalary, int netSalary)
         : base(name, email, password, permissions, address, phone)
+
         {
             RUT = rut;
             AFP = aFP;
@@ -24,7 +24,15 @@ namespace ENETALLER.app.data.model
             ExtraValue = extraValue;
             GrossSalary = grossSalary;
             NetSalary = netSalary;
-        }        
+        }
+
+        public Employee(int grossSalary, int netSalary, AFP aFP, Health health)
+        {
+            GrossSalary = grossSalary;
+            NetSalary = netSalary;
+            AFP = aFP;
+            Health = health;
+        }
     }
 }
 

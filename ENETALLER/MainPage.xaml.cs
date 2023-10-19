@@ -1,7 +1,8 @@
-﻿using ENETALLER.app.controller;
-using ENETALLER.app.data.mock;
+﻿using ENETALLER.app.ui;
+using MySql.Data.MySqlClient;
+using ENETALLER.app.data;
 using ENETALLER.app.data.model;
-using ENETALLER.app.ui;
+using ENETALLER.app.data.repository;
 
 namespace ENETALLER;
 
@@ -10,7 +11,7 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
-        PruebaCalculo();
+        PruebaUsuario();
 	}
 
     private async void OnLoginClicked(object sender, EventArgs e)
@@ -21,7 +22,7 @@ public partial class MainPage : ContentPage
         if (ValidarCredenciales(usuario, contraseña))
         {
             await DisplayAlert("Éxito", "Inicio de sesión exitoso", "OK");
-            await Navigation.PushAsync(new CalculadoraSueldo());
+            await Navigation.PushAsync(new FormularioAdmin());
         }
         else
         {
@@ -33,9 +34,13 @@ public partial class MainPage : ContentPage
     {
         return usuario == "usuario" && contraseña == "contraseña";
     }
-    private void PruebaCalculo()
+    private void PruebaUsuario()
     {
-        double resultado = Calculador.CalcularSueldoBruto(MockData.gabriela, 10.0, 3.0);
-        Console.WriteLine($"El sueldo bruto de {MockData.gabriela.Name} es: {resultado}");
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        List<Employee> listEmployees = employeeDAO.ReadEmployees();
+        foreach (Employee employee in listEmployees)
+        {
+            Console.WriteLine($"{employee.Name}");
+        }
     }
 }

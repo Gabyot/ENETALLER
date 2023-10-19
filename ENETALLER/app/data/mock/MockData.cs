@@ -23,6 +23,8 @@ namespace ENETALLER.app.data.mock
 
         public static Employee gabriela = new Employee("Gabriela Arancibia", "usuario", "contraseña", "admin", "Dirección",
                 "974761444", "19349612-1", MockData.AFPDictionary["CUPRUM"], MockData.HealthDictionary["FONASA"], 5000, 7000, 0, 0);
+
+        public static List<Employee> employeeList = new List<Employee>();
     }
 }
 

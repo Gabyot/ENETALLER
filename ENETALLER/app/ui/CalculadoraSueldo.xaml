@@ -24,14 +24,12 @@
             <Label Text="Seleccionar AFP" />
             <Picker x:Name="AFPPicker" Margin="0,0,0,15">
                 <Picker.ItemsSource>
-                    <!-- Agrega aquí las opciones para la AFP -->
                 </Picker.ItemsSource>
             </Picker>
 
             <Label Text="Seleccionar Sistema de Salud" />
             <Picker x:Name="SaludPicker" Margin="0,0,0,15">
                 <Picker.ItemsSource>
-                    <!-- Agrega aquí las opciones para el sistema de salud -->
                 </Picker.ItemsSource>
             </Picker>
             <HorizontalStackLayout>

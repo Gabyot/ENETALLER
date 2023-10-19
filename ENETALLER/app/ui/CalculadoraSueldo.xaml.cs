@@ -1,14 +1,22 @@
 ﻿using ENETALLER.app.controller;
 using ENETALLER.app.data.mock;
 using ENETALLER.app.data.model;
+using ENETALLER.app.data.repository;
 
 namespace ENETALLER.app.ui;
 
 public partial class CalculadoraSueldo : ContentPage
 {
-	public CalculadoraSueldo()
+    private Employee selectedEmployee;
+    private double sueldoBruto;
+    private int sueldoLiquido;
+    private AFP afp;
+    private Health salud;
+
+    public CalculadoraSueldo(Employee employee)
 	{
 		InitializeComponent();
+        selectedEmployee = employee;
 	}
 
     protected override void OnAppearing()
@@ -36,13 +44,13 @@ public partial class CalculadoraSueldo : ContentPage
             if (!string.IsNullOrEmpty(afpSeleccionada) && !string.IsNullOrEmpty(saludSeleccionada))
             {
                 // Calcula el sueldo bruto
-                double sueldoBruto = Calculador.CalcularSueldoBruto(MockData.gabriela, horasTrabajadas, horasExtras);
+                sueldoBruto = Calculador.CalcularSueldoBruto(selectedEmployee, horasTrabajadas, horasExtras);
 
                 // Calcula el sueldo líquido
-                AFP afp = MockData.AFPDictionary[afpSeleccionada]; // Obtén el objeto AFP desde tu diccionario
-                Health salud = MockData.HealthDictionary[saludSeleccionada]; // Obtén el objeto de salud desde tu diccionario
+                afp = MockData.AFPDictionary[afpSeleccionada]; // Obtén el objeto desde diccionario
+                salud = MockData.HealthDictionary[saludSeleccionada]; 
 
-                int sueldoLiquido = Calculador.CalcularSueldoLiquido(MockData.gabriela, afp, salud);
+                sueldoLiquido = Calculador.CalcularSueldoLiquido(selectedEmployee, afp, salud);
 
                 // Muestra los resultados en los Labels
                 SueldoBrutoLabel.Text = $"${sueldoBruto:C}";
@@ -62,7 +70,18 @@ public partial class CalculadoraSueldo : ContentPage
 
     private void OnGuardarClicked(object sender, EventArgs e)
     {
-        Console.WriteLine("Hello, World!");
+        // Actualiza los valores en el objeto empleado seleccionado
+        selectedEmployee.GrossSalary = sueldoBruto;
+        selectedEmployee.NetSalary = sueldoLiquido;
+        selectedEmployee.AFP = afp; // Usar la AFP seleccionada
+        selectedEmployee.Health = salud; // Usar el sistema de salud seleccionado
+
+        // Llama al método de EmployeeDAO para actualizar en la base de datos
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        employeeDAO.UpdateEmployees(selectedEmployee);
+
+        // Muestra una confirmación al usuario
+        DisplayAlert("Éxito", "Los valores se han guardado en la base de datos.", "OK");
     }
 
     private void OnLimpiarCamposClicked(object sender, EventArgs e)

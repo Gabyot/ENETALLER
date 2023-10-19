@@ -24,6 +24,18 @@ namespace ENETALLER.app.data.model
             Address = address;
             Phone = phone;
         }
+
+        public User()
+        {
+            
+        }
+
+        public User(string name, string address, string phone)
+        {
+            Name = name;
+            Address = address;
+            Phone = phone;
+        }
     }
 }
 
